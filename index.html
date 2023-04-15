@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Detroit On-street Policies</title>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu2CrDqusLI5jqk0yAtY2f0xVpy8TtLnQ&libraries=places&callback=initMap" async defer></script>
- </head>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu2CrDqusLI5jqk0yAtY2f0xVpy8TtLnQ&libraries=places&callback=initMap"
+    async defer></script>
+</head>
+
 <body>
   <div id="main-map"></div>
   <div id="street-view"></div>
@@ -13,5 +17,26 @@
   <button id="toggle-view">Toggle Satellite View</button>
   <script src="detroit.js"></script>
   <script src="map.js"></script>
-  </body>
+
+  <script>
+    (g => { /* ... (existing code) */ })({
+      key: "AIzaSyCu2CrDqusLI5jqk0yAtY2f0xVpy8TtLnQ",
+      // Add other bootstrap parameters as needed, using camel case.
+      // Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
+    });
+
+    function getUrlParams() {
+      /* ... (existing code) */
+    }
+
+    function initMap() {
+      /* ... (existing code) */
+    }
+
+    google.maps.event.addDomListener(window, "load", initMap);
+    window.addEventListener("load", initMap);
+  </script>
+
+</body>
+
 </html>
