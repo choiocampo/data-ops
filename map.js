@@ -158,6 +158,12 @@ function initMap() {
     mainMap.data.addListener("click", (event) => {
         // ... (existing code)
 
+        // Change the line geometry to red and the strokeWeight to 5 when clicked
+        mainMap.data.overrideStyle(event.feature, {
+            strokeColor: 'red',
+            strokeWeight: 5
+        });
+
         // Display the line on streetView
         const path = event.feature.getGeometry().getArray();
         const polyline = new google.maps.Polyline({
@@ -175,6 +181,7 @@ function initMap() {
 
         // Remove markers and polyline when the info window is closed
         google.maps.event.addListener(infoWindow, "closeclick", () => {
+            mainMap.data.revertStyle(event.feature);
             startMarkerMain.setMap(null);
             endMarkerMain.setMap(null);
             startMarkerStreet.setMap(null);
