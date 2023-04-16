@@ -106,46 +106,8 @@ function initMap() {
         infoWindow.open(mainMap);
     });
 
-    // Add search box
-    const searchBox = new google.maps.places.SearchBox(document.getElementById("search-box"));
-    mainMap.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(document.getElementById("search-box"));
 
-
-    // Bias the search results towards the current map's viewport
-    mainMap.addListener("bounds_changed", () => {
-        searchBox.setBounds(mainMap.getBounds());
-    });
-
-
-    // Listen for the event fired when the user selects a prediction and retrieve more details for that place
-    searchBox.addListener("places_changed", () => {
-        const places = searchBox.getPlaces();
-
-        if (places.length == 0) {
-            return;
-        }
-
-        // For each place, get the icon, name, and location
-        const bounds = new google.maps.LatLngBounds();
-        places.forEach((place) => {
-            if (!place.geometry) {
-                console.log("Returned place contains no geometry");
-                return;
-            }
-
-            if (place.geometry.viewport) {
-                // Only geocodes have viewport
-                bounds.union(place.geometry.viewport);
-            } else {
-                bounds.extend(place.geometry.location);
-            }
-        });
-
-        mainMap.fitBounds(bounds);
-
-        // Update the position of the Street View Panorama
-        streetView.setPosition(places[0].geometry.location);
-    });
+    
 
     const toggleViewButton = document.getElementById("toggle-view");
     toggleViewButton.addEventListener("click", () => {
