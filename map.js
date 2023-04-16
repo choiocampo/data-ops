@@ -28,7 +28,42 @@ function initMap() {
     });
     mainMap.setStreetView(streetView);
 
+    const searchBoxInput = document.getElementById("search-box");
+    searchBoxInput.addEventListener("change", () => {
+        const searchID = searchBoxInput.value;
+        findAndHighlightLine(mainMap, searchID);
+    });
+
+
     // MOSTLY DITO NAGLALAGAY NG ADDITIONAL FEATURES
+
+
+    function findAndHighlightLine(map, searchID) {
+        // Loop through all the features in the GeoJSON data
+        map.data.forEach((feature) => {
+            // Check if the feature's property ID matches the searched ID
+            if (feature.getProperty("id") === searchID) {
+                // Center the map on the line
+                const lineBounds = new google.maps.LatLngBounds();
+                const coordinates = feature.getGeometry().getArray();
+                coordinates.forEach((coord) => {
+                    lineBounds.extend(coord);
+                });
+                map.fitBounds(lineBounds);
+
+                // Change the line's color to red and increase the stroke weight
+                map.data.overrideStyle(feature, {
+                    strokeColor: "red",
+                    strokeWeight: 5,
+                });
+
+                // Move the pegman to the location of the line
+                streetView.setPosition(coordinates[0]);
+
+                // Add any additional actions you want to perform when the line is found
+            }
+        });
+    }
 
 
 
