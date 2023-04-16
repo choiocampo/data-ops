@@ -29,10 +29,13 @@ function initMap() {
     mainMap.setStreetView(streetView);
 
     const searchBoxInput = document.getElementById("search-box");
-    searchBoxInput.addEventListener("change", () => {
-        const searchID = searchBoxInput.value;
-        findAndHighlightLine(mainMap, searchID);
+    searchBoxInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            const searchID = searchBoxInput.value;
+            findAndHighlightLine(mainMap, searchID);
+        }
     });
+
 
 
     // MOSTLY DITO NAGLALAGAY NG ADDITIONAL FEATURES
