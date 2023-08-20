@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Boston On-street Map</title>
+  <link rel="stylesheet" href="styles.css">
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlMEhKYVZoNoephqzVmstEiCzaLyRrarg&libraries=places&callback=initMap"
+    async defer></script>
+</head>
+
+<body>
+  <div id="main-map"></div>
+  <div id="street-view"></div>
+  <div id="empty-window"><iframe src="https://alfred-data.maps.arcgis.com/apps/instant/basic/index.html?appid=7ad93f8128744b1c93af67f509322000" width="100%" height="100%"></iframe></div>
+  <input type="search" id="search-box" placeholder="Search by Object ID" />
+  <button id="toggle-view">Toggle Satellite View</button>
+
+  <!-- JavaScript files -->
+
+  <script src="detroit.js"></script>
+  <script src="map.js"></script>
+
+</body>
+
+</html>
